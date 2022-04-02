@@ -111,8 +111,10 @@ public class HubMagic extends Plugin {
 
     void reloadPlugin() {
         try {
-            if (!getDataFolder().mkdir()) {
-                throw new IOException("Unable to create data folder.");
+            if (!getDataFolder().exists()) {
+                if (!getDataFolder().mkdir()) {
+                    throw new IOException("Unable to create data folder.");
+                }
             }
             configuration = createOrLoadConfig();
         } catch (IOException e) {
